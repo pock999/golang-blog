@@ -24,13 +24,18 @@ func main() {
 	defer Eloquent.Close();
 
 	// 若存在就drop掉
+
+	if Eloquent.HasTable(&models.Article{}) {
+		Eloquent.DropTable(&models.Article{})
+	}
+
 	if Eloquent.HasTable(&models.User{}) {
 		Eloquent.DropTable(&models.User{})
 	}
-	
 
 	// migrate
 	Eloquent.AutoMigrate(&models.User{});
+	Eloquent.AutoMigrate(&models.Article{});
 
 	fmt.Println("=== DevMigate END ===");
 }

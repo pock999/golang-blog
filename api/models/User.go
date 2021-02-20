@@ -5,9 +5,10 @@ import (
 )
 
 type User struct {
-	Id uint `gorm:"AUTO_INCREMENT"`
+	Id uint `gorm:"PRIMARY_KEY;AUTO_INCREMENT;NOT NULL"`
 	Account string `json:"account"`
 	Password string `json:"password"`
+	Articles []Article `gorm:"foreignKey:UserId"`
 }
 
 
